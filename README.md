@@ -11,6 +11,7 @@ DOM или Canvas как и дизайн тут не принципиальны,
 
 ## Demo
 [80x80, 800px](https://pavgra.github.com/snake-test?grid-cells=80&grid-px=800) (looks too small)
+
 [30x30, 600px](https://pavgra.github.com/snake-test?grid-cells=30&grid-px=600)
 
 ## Futher improvements
