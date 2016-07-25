@@ -21,12 +21,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 		s(r[o]);
 	}return s;
 })({ 1: [function (require, module, exports) {
-		var GameEngine = require('Engines/GameEngine'),
+		var Helpers = require('Utilities/Helpers'),
+		    GameEngine = require('Engines/GameEngine'),
 		    RenderEngine = require('Engines/RenderEngine');
 
 		var CONTAINER_EL_SELECTOR = '.js-grid',
-		    GRID_SIZE_CELLS = 30,
-		    GRID_SIZE_PX = 600;
+		    GRID_SIZE_CELLS = parseInt(Helpers.getUrlParam('grid-cells')) || 30,
+		    GRID_SIZE_PX = parseInt(Helpers.getUrlParam('grid-px')) || 600;
 
 		var gameEngine = new GameEngine(10, GRID_SIZE_CELLS),
 		    renderEngine = new RenderEngine(document.querySelector(CONTAINER_EL_SELECTOR), GRID_SIZE_CELLS, GRID_SIZE_PX);
@@ -47,7 +48,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 		window.Point = require('Utilities/Point');
 		window.gameEngine = gameEngine;
 		window.renderEngine = renderEngine;
-	}, { "Engines/GameEngine": 2, "Engines/RenderEngine": 3, "Utilities/Point": 8 }], 2: [function (require, module, exports) {
+	}, { "Engines/GameEngine": 2, "Engines/RenderEngine": 3, "Utilities/Helpers": 7, "Utilities/Point": 8 }], 2: [function (require, module, exports) {
 		var Point = require('Utilities/Point'),
 		    Helpers = require('Utilities/Helpers'),
 		    Food = require('Entities/Food'),
@@ -145,7 +146,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 				value: function startNewGame() {
 					this.score = 0;
 					this.isGameOver = false;
-					this.snake = new Snake(0, 0, 5, undefined, '#00FF00', 30, 30);
+					this.snake = new Snake(0, 0, 5, undefined, '#00FF00', this.gridSize, this.gridSize);
 					this.food = new Food();
 					this.placeFood();
 				}
@@ -477,6 +478,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 				key: "getRandomInt",
 				value: function getRandomInt(min, max) {
 					return Math.floor(Math.random() * (max - min)) + min;
+				}
+			}, {
+				key: "getUrlParam",
+				value: function getUrlParam(name, url) {
+					if (!url) url = window.location.href;
+					name = name.replace(/[\[\]]/g, "\\$&");
+					var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+					    results = regex.exec(url);
+					if (!results) return null;
+					if (!results[2]) return '';
+					return decodeURIComponent(results[2].replace(/\+/g, " "));
 				}
 			}]);
 
