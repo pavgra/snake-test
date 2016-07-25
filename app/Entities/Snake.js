@@ -114,10 +114,9 @@ class Snake extends Entity {
 				break;
 		}
 
+		// NOTE: probably not the best solution. May be move out to GameEngine
 		if (this.maxX > 0)
 			newHead.x = newHead.x < 0 ? (this.maxX + newHead.x) : newHead.x % this.maxX;
-
-
 		if (this.maxY > 0)
 			newHead.y = newHead.y < 0 ? (this.maxY + newHead.y) : newHead.y % this.maxY;
 
