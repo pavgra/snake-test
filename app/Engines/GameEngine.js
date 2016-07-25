@@ -72,7 +72,7 @@ class GameEngine {
 	startNewGame() {
 		this.score = 0;
 		this.isGameOver = false;
-		this.snake = new Snake(0, 0, 5, undefined, '#00FF00', 30, 30);
+		this.snake = new Snake(0, 0, 5, undefined, '#00FF00', this.gridSize, this.gridSize);
 		this.food = new Food();
 		this.placeFood();
 	}

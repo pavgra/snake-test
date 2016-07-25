@@ -10,7 +10,9 @@ Javascript, поле 80x80.
 DOM или Canvas как и дизайн тут не принципиальны, на Ваш выбор.
 
 ## Demo
-https://pavgra.github.com/snake-test
+[80x80, 800px](https://pavgra.github.com/snake-test) (looks too small)
+
+(Or execute from local PC with required settings: index.html?grid-cells=30&grid-px=600)
 
 ## Futher improvements
 * Add unit-test
